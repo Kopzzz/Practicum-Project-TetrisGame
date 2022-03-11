@@ -51,6 +51,8 @@ class Tetris:
     y = 60
     zoom = 20
     figure = None
+    next_figure = None
+    next_figure_map = [[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]]
 
     def __init__(self, height, width):
         self.height = height
@@ -65,7 +67,7 @@ class Tetris:
             self.field.append(new_line)
 
     def new_figure(self):
-        self.figure = Figure(3, 0)
+        return Figure(3, 0)
 
     def intersects(self):
         intersection = False
@@ -111,7 +113,8 @@ class Tetris:
                 if i * 4 + j in self.figure.image():
                     self.field[i + self.figure.y][j + self.figure.x] = self.figure.color
         self.break_lines()
-        self.new_figure()
+        self.figure = self.next_figure
+        self.next_figure = self.new_figure()
         if self.intersects():
             self.state = "gameover"
 
@@ -152,7 +155,8 @@ pressing_down = False
 
 while not done:
     if game.figure is None:
-        game.new_figure()
+        game.figure = Figure(3,0)
+        game.next_figure = Figure(3,0)
     counter += 1
     if counter > 100000:
         counter = 0
@@ -186,10 +190,10 @@ while not done:
 
     for i in range(game.height):
         for j in range(game.width):
-            pygame.draw.rect(screen, GRAY, [game.x + game.zoom * j, game.y + game.zoom * i, game.zoom, game.zoom], 1)
+            pygame.draw.rect(screen, GRAY, [50 + game.x + game.zoom * j,game.y + game.zoom * i, game.zoom, game.zoom], 1)
             if game.field[i][j] > 0:
                 pygame.draw.rect(screen, colors[game.field[i][j]],
-                                 [game.x + game.zoom * j + 1, game.y + game.zoom * i + 1, game.zoom - 2, game.zoom - 1])
+                                 [50 + game.x + game.zoom * j + 1, game.y + game.zoom * i + 1, game.zoom - 2, game.zoom - 1])
 
     if game.figure is not None:
         for i in range(4):
@@ -197,17 +201,33 @@ while not done:
                 p = i * 4 + j
                 if p in game.figure.image():
                     pygame.draw.rect(screen, colors[game.figure.color],
-                                     [game.x + game.zoom * (j + game.figure.x) + 1,
+                                     [50 + game.x + game.zoom * (j + game.figure.x) + 1,
                                       game.y + game.zoom * (i + game.figure.y) + 1,
                                       game.zoom - 2, game.zoom - 2])
 
+    if game.next_figure is not None:
+        for i in range(4):
+            for j in range(4):
+                pygame.draw.rect(screen, GRAY,
+                                 [35+20 * (j) ,
+                                  200 + 20 * (i) , game.zoom, game.zoom], 1)
+                p = i * 4 + j
+                if p in game.next_figure.image():
+                    pygame.draw.rect(screen, colors[game.next_figure.color],
+                                     [35+20*(j) + 1,
+                                      200 + 20*(i) + 1,
+                                      game.zoom - 2, game.zoom - 2])
+
     font = pygame.font.SysFont('Calibri', 25, True, False)
+    font2 = pygame.font.SysFont('Calibri', 13, True, False)
     font1 = pygame.font.SysFont('Calibri', 65, True, False)
     text = font.render("Score: " + str(game.score), True, BLACK)
     text_game_over = font1.render("Game Over", True, (255, 125, 0))
     text_game_over1 = font1.render("Press ESC", True, (255, 215, 0))
+    text_next = font2.render("NEXT BLOCK",True, (0,0,0))
 
     screen.blit(text, [0, 0])
+    screen.blit(text_next, [35-10,180])
     if game.state == "gameover":
         screen.blit(text_game_over, [20, 200])
         screen.blit(text_game_over1, [25, 265])
