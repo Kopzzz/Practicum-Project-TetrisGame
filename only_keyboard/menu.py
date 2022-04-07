@@ -3,7 +3,7 @@ import random
 #import usb
 #from practicum import find_mcu_boards, McuBoard, PeriBoard
 from Tetris import Tetris,Figure
-#from multi import multi_play
+from multi import multi_play
 from single import single_play
 
 colors = [
@@ -46,7 +46,7 @@ WHITE = (255, 255, 255)
 GRAY = (128, 128, 128)
 YELLOW = (255, 255, 0)
 
-#multi_play(peri, peri1, colors, screen)
+#multi_play(colors, screen)
 #single_play(peri, colors, screen)
 done = False
 check_up = 1
@@ -59,8 +59,8 @@ while not done:
     
 
     font = pygame.font.SysFont('Calibri', 25, True, False)
-    text = font.render("Single Player", True, WHITE)
-    text2 = font.render("Multi Player", True, WHITE)
+    text = font.render("Singleplayer", True, WHITE)
+    text2 = font.render("Multiplayer", True, WHITE)
     screen.blit(text, [200,100 ])
     screen.blit(text2, [200,150])
     select = select%2

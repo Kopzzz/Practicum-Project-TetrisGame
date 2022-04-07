@@ -1,3 +1,4 @@
+from sre_parse import State
 import pygame
 import random
 #import usb
@@ -27,6 +28,7 @@ def single_play(colors, screen):
     check_up = 1
     check_left = 1
     check_right = 1
+
     game.state = "start"
     while not done:
         '''
@@ -50,22 +52,27 @@ def single_play(colors, screen):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 done = True
-            if event.type == pygame.KEYDOWN and game.state != "game over":
-                if event.key == pygame.K_UP:
-                    game.rotate()
-                if event.key == pygame.K_DOWN:
-                    pressing_down = True
-                if event.key == pygame.K_LEFT:
-                    game.go_side(-1)
-                if event.key == pygame.K_RIGHT:
-                    game.go_side(1)
-                if event.key == pygame.K_SPACE:
-                    game.go_space()
-                if event.key == pygame.K_ESCAPE:
-                    game.__init__(20, 10)
+            if event.type == pygame.KEYDOWN:
+                if game.state != "game over":
+                    if event.key == pygame.K_UP:
+                        game.rotate()
+                    if event.key == pygame.K_DOWN:
+                        pressing_down = True
+                    if event.key == pygame.K_LEFT:
+                        game.go_side(-1)
+                    if event.key == pygame.K_RIGHT:
+                        game.go_side(1)
+                    if event.key == pygame.K_SPACE:
+                        game.go_space()
+                else:
+                    if event.key == pygame.K_RIGHT:
+                        game.__init__(20, 10)
+                    if event.key == pygame.K_LEFT:
+                        return
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_DOWN:
                     pressing_down = False
+            
         '''
         if game.state == "start" or game.state == "obstacle":
             if peri.get_light() >= 0.5 * light_min:
@@ -90,22 +97,15 @@ def single_play(colors, screen):
 
                 if not peri.get_down():
                     pressing_down = False
-        '''
+        
         if game.state == "game over":
-            '''
+            
             if peri.get_right() :
                 game.__init__(20, 10)
 
             if peri.get_left() :
                 return
-            '''
-            if event.type == pygame.QUIT:
-                done = True
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_RIGHT:
-                    game.__init__(20, 10)
-                if event.key == pygame.K_LEFT:
-                    return
+        '''
 
         screen.fill(WHITE)
         
@@ -195,8 +195,8 @@ def single_play(colors, screen):
         screen.blit(text_next, [game.next_blockX , 180])
         if game.state == "game over":
             screen.blit(text_game_over, [220, 150])
-            screen.blit(text_press_right, [140, 250])
-            screen.blit(text_press_left, [140, 300])
+            screen.blit(text_press_right, [150, 250])
+            screen.blit(text_press_left, [150, 300])
 
         pygame.display.flip()
         clock.tick(fps)
