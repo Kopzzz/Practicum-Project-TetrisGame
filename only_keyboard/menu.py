@@ -25,7 +25,6 @@ if len(devs) == 2 :
     peri1 = PeriBoard(mcu_2)
 '''
 
-
 # Initialize the game engine
 pygame.init()
 
@@ -54,6 +53,8 @@ check_left = 1
 check_right = 1
 check_down = 1
 
+pygame.mixer.music.load("./audio/BGM Menu.mp3")
+pygame.mixer.music.play(-1)
 while not done:
     screen.fill(BLACK)
     
