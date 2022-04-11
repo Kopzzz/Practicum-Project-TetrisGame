@@ -98,7 +98,7 @@ class Tetris:
                 for i1 in range(i, 1, -1):
                     for j in range(self.width):
                         self.field[i1][j] = self.field[i1 - 1][j]
-        self.score += lines * 100
+        self.score += (lines ** 2) * 100
 
     def go_space(self):
         while not self.intersects():
