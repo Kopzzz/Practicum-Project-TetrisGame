@@ -11,10 +11,10 @@ def tutorial_single(colors, screen):
 
     clock = pygame.time.Clock()
     fps = 25
-    pygame.mixer.music.load("../audio/BGM InGame.mp3")
-    pygame.mixer.music.play(-1)
-    bg = pygame.image.load("../only_keyboard/bg-.jpeg")
-    board_pic = pygame.image.load("../only_keyboard/board2.jpeg")
+    # pygame.mixer.music.load("./audio/BGM InGame.mp3")
+    # pygame.mixer.music.play(-1)
+    bg = pygame.image.load("./only_keyboard/bg-.jpeg")
+    board_pic = pygame.image.load("./only_keyboard/board2.jpeg")
     # Define some colors
     BLACK = (0, 0, 0)
     WHITE = (255, 255, 255)
@@ -57,12 +57,12 @@ def tutorial_single(colors, screen):
             if event.type == pygame.QUIT:
                 done = True
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP and check_up:
+                if event.key == pygame.K_LEFT and check_left:
                     # pygame.draw.rect(screen, BLACK, [180, 100 + select * 50, 20, 20])
                     return
             if event.type == pygame.KEYUP:
-                if event.key == pygame.K_UP:
-                    check_up = 1
+                if event.key == pygame.K_LEFT:
+                    check_left = 1
             '''
             if not peri.get_up():
                 return

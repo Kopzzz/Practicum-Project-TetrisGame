@@ -5,6 +5,7 @@ import random
 from Tetris import Tetris,Figure
 from multi import multi_play
 from single import single_play
+from tutorial1 import tutorial_single
 
 colors = [
     (0, 0, 0),
@@ -65,10 +66,12 @@ while not done:
     font = pygame.font.Font('./font/04B_30__.ttf', 25)
     text = font.render("Singleplayer", True, WHITE)
     text2 = font.render("Multiplayer", True, WHITE)
-    select = select % 2
+    text3 = font.render("Tutorial", True, WHITE)
+    select = select % 3
     screen.blit(select_m, [35 + 180 + 50, 14 + 100 + select * 50])
     screen.blit(text, [200+100,100+50])
     screen.blit(text2, [200+100,150+50])
+    screen.blit(text3, [200+100,200+50])
 
     '''pygame.draw.rect(screen, WHITE,
                      [50+180+50,
@@ -87,11 +90,13 @@ while not done:
                 #pygame.draw.rect(screen, BLACK, [180, 100 + select * 50, 20, 20])
                 select += 1
                 check_down = 0
-            if event.key == pygame.K_RIGHT and check_right:
+            if event.key == pygame.K_RIGHT:
                 if select == 0:
                     single_play(colors, screen)
-                else:
+                elif select == 1:
                     multi_play(colors, screen)
+                else:
+                    tutorial_single(colors, screen)
                 check_right = 0
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_UP:
