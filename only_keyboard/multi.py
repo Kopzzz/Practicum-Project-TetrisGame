@@ -45,8 +45,6 @@ def multi_play(colors, screen):
     font_press = pygame.font.SysFont('Calibri',44 , True, False)
     font_next = pygame.font.SysFont('Calibri', 14, True, False)
     
-    text_score = font_socre.render("Score: " + str(game.score), True, WHITE)
-    text1_score = font_socre.render("Score: " + str(game1.score), True, WHITE)
     text_game_over = font_game_over.render("Game Over", True, (255, 125, 0))
     text_press_right = font_press.render("Press right : Play again", True, (255, 215, 0))
     text_press_left = font_press.render("Press left   : Return to menu", True, (255, 215, 0))
@@ -56,6 +54,8 @@ def multi_play(colors, screen):
     game.state = "start"
     game1.state = "start"
     while not done:
+        text_score = font_socre.render("Score: " + str(game.score), True, WHITE)
+        text1_score = font_socre.render("Score: " + str(game1.score), True, WHITE)
         '''
         if game1.state == "calibrate":
             if peri1.get_down():
@@ -251,7 +251,7 @@ def multi_play(colors, screen):
                                                 game1.zoom - 2, game1.zoom - 2])
         elif game1.state == 'game over':
             font_socre = pygame.font.SysFont('Calibri', 44, True, False)
-            text1_socre= font_socre.render("Score: " + str(game.score), True, WHITE)
+            text1_socre= font_socre.render("Score: " + str(game1.score), True, WHITE)
             screen.blit(text1_socre, [400, 0])        
             screen.blit(text_game_over, [420, 150])
 
