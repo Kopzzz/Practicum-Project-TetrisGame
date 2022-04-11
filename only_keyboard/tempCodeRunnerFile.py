@@ -1,1 +1,0 @@
-pygame.font.Font('./only_keyboard/04B_30__.ttf', 25)

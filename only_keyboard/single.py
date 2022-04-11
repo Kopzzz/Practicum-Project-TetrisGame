@@ -21,7 +21,7 @@ def single_play(colors, screen):
     game = Tetris(20, 10)
     counter = 0
     game.x += 200
-    game.next_blockX += 200
+    game.next_blockX += 150
 
     pressing_down = False
 
@@ -184,24 +184,24 @@ def single_play(colors, screen):
                                                 game.next_blockY + game.zoom * (i) + 1,
                                                 game.zoom - 2, game.zoom - 2])
 
-            font_next = pygame.font.Font('./only_keyboard/04B_30__.ttf', 14)
-            text_next = font_next.render("NEXT BLOCK", True,WHITE)
+            font_next = pygame.font.Font('./font/04B_30__.ttf', 14)
+            text_next = font_next.render("NEXT", True,WHITE)
             screen.blit(text_next, [game.next_blockX , 180])
 
-            font_socre = pygame.font.Font('./only_keyboard/04B_30__.ttf', 32)
+            font_socre = pygame.font.Font('./font/04B_30__.ttf', 24)
             text_socre= font_socre.render("Score: " + str(game.score), True, WHITE)
             screen.blit(text_socre, [0, 0])
         else:         
-            font_game_over = font = pygame.font.Font('./only_keyboard/04B_30__.ttf', 72)
-            font_press = pygame.font.Font('./only_keyboard/04B_30__.ttf', 14)
-            font_socre = pygame.font.Font('./only_keyboard/04B_30__.ttf', 14)
+            font_game_over = font = pygame.font.Font('./font/04B_30__.ttf', 72)
+            font_press = pygame.font.Font('./font/04B_30__.ttf', 24)
+            font_socre = pygame.font.Font('./font/04B_30__.ttf', 36)
             text_game_over = font_game_over.render("Game Over", True, (255, 125, 0))
             text_press_right = font_press.render("Press right : Play again", True, (255, 215, 0))
-            text_press_left = font_press.render("Press left   : Return to menu", True, (255, 215, 0))
+            text_press_left = font_press.render("Press left : Return to menu", True, (255, 215, 0))
             text_socre= font_socre.render("Score: " + str(game.score), True, WHITE)
 
             screen.blit(text_socre, [0, 0])        
-            screen.blit(text_game_over, [220, 150])
+            screen.blit(text_game_over, [170, 150])
             screen.blit(text_press_right, [150, 250])
             screen.blit(text_press_left, [150, 300])
 

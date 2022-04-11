@@ -31,12 +31,12 @@ pygame.init()
 size = (800, 500)
 screen = pygame.display.set_mode(size)
 
-background = pygame.image.load("./only_keyboard/tetris-2.jpg")
-select_m = pygame.image.load("./only_keyboard/menu_button (2).png")
+background = pygame.image.load("./pic/tetris-2.jpg")
+select_m = pygame.image.load("./pic/menu_button (2).png")
 
 menu_state = "menu"
 select = 0
-pygame.display.set_caption("Tetris")
+pygame.display.set_caption("Tetris upgrade")
 
 clock = pygame.time.Clock()
 fps = 25
@@ -62,7 +62,7 @@ while not done:
     #screen.fill((0,0,0))
     screen.blit(background,(0,0))
 
-    font = pygame.font.Font('./only_keyboard/04B_30__.ttf', 25)
+    font = pygame.font.Font('./font/04B_30__.ttf', 25)
     text = font.render("Singleplayer", True, WHITE)
     text2 = font.render("Multiplayer", True, WHITE)
     select = select % 2
