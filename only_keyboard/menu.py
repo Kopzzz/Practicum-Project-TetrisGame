@@ -31,7 +31,7 @@ pygame.init()
 size = (800, 500)
 screen = pygame.display.set_mode(size)
 
-background = pygame.image.load("./PracticumProject-TetrisGame/only_keyboard/tetris-2.jpg")
+background = pygame.image.load("./only_keyboard/tetris-2.jpg")
 
 menu_state = "menu"
 select = 0
@@ -55,7 +55,7 @@ check_left = 1
 check_right = 1
 check_down = 1
 
-pygame.mixer.music.load("./PracticumProject-TetrisGame/audio/BGM Menu.mp3")
+pygame.mixer.music.load("./audio/BGM Menu.mp3")
 pygame.mixer.music.play(-1)
 while not done:
     screen.fill((0,0,0))
