@@ -6,7 +6,7 @@ import random
 from Tetris import Tetris,Figure
 
 def multi_play(colors, screen):
-    pygame.mixer.music.load("./PracticumProject-TetrisGame/audio/BGM InGame.mp3")
+    pygame.mixer.music.load("./audio/BGM InGame.mp3")
     pygame.mixer.music.play(-1)
     # Define some colors
     BLACK = (0, 0, 0)
@@ -40,10 +40,10 @@ def multi_play(colors, screen):
     check_left = 1
     check_right = 1
 
-    font_socre = pygame.font.SysFont('Calibri', 32, True, False)
-    font_game_over = pygame.font.SysFont('Calibri',72 , True, False)
-    font_press = pygame.font.SysFont('Calibri',44 , True, False)
-    font_next = pygame.font.SysFont('Calibri', 14, True, False)
+    font_socre = pygame.font.Font('./only_keyboard/04B_30__.ttf', 32)
+    font_game_over = pygame.font.Font('./only_keyboard/04B_30__.ttf', 72)
+    font_press = pygame.font.Font('./only_keyboard/04B_30__.ttf', 44)
+    font_next = pygame.font.Font('./only_keyboard/04B_30__.ttf', 14)
     
     text_game_over = font_game_over.render("Game Over", True, (255, 125, 0))
     text_press_right = font_press.render("Press right : Play again", True, (255, 215, 0))
@@ -96,7 +96,7 @@ def multi_play(colors, screen):
                         game.__init__(20, 10)
                         game1.__init__(20, 10)
                     if event.key == pygame.K_LEFT:
-                        pygame.mixer.music.load("./PracticumProject-TetrisGame/audio/BGM Menu.mp3")
+                        pygame.mixer.music.load("./audio/BGM Menu.mp3")
                         pygame.mixer.music.play(-1)
                         return
                 if game1.state != "game over":
@@ -250,7 +250,7 @@ def multi_play(colors, screen):
                                                 game1.next_blockY + game1.zoom * (i) + 1,
                                                 game1.zoom - 2, game1.zoom - 2])
         elif game1.state == 'game over':
-            font_socre = pygame.font.SysFont('Calibri', 44, True, False)
+            font_socre = pygame.font.Font('./only_keyboard/04B_30__.ttf', 44)
             text1_socre= font_socre.render("Score: " + str(game1.score), True, WHITE)
             screen.blit(text1_socre, [400, 0])        
             screen.blit(text_game_over, [420, 150])
@@ -326,7 +326,7 @@ def multi_play(colors, screen):
                                                 game.next_blockY +  game.zoom * (i) + 1,
                                                 game.zoom - 2, game.zoom - 2])
         elif game.state == 'game over':
-            font_socre = pygame.font.SysFont('Calibri', 44, True, False)
+            font_socre = pygame.font.Font('./only_keyboard/04B_30__.ttf', 44)
             text_socre= font_socre.render("Score: " + str(game.score), True, WHITE)
             screen.blit(text_socre, [0, 0])        
             screen.blit(text_game_over, [20, 150])
