@@ -111,93 +111,96 @@ def single_play(colors, screen):
                 return
         '''
 
-        screen.fill(WHITE)
-        
-        if game.state == "obstacle":
-            a = peri.get_light()
-            if a <= 0.5 * light_min:
-                game.state = "start"
-                print(a, light_min)
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    done = True
+        screen.fill(BLACK)
+        if game.state != "game over":
+            if game.state == "obstacle":
+                a = peri.get_light()
+                if a <= 0.5 * light_min:
+                    game.state = "start"
+                    print(a, light_min)
+                for event in pygame.event.get():
+                    if event.type == pygame.QUIT:
+                        done = True
 
-            for i in range(game.height):
-                for j in range(game.width):
-                    pygame.draw.rect(screen, GRAY,
-                                     [game.x + game.zoom * j, game.y + game.zoom * i, game.zoom, game.zoom], 1)
-                    pygame.draw.rect(screen, YELLOW,
-                                     [game.x + game.zoom * j + 1, game.y + game.zoom * i + 1, game.zoom - 2,
-                                      game.zoom - 1])
-
-            if game.figure is not None:
-                for i in range(4):
-                    for j in range(4):
-                        p = i * 4 + j
-                        if p in game.figure.image():
-                            pygame.draw.rect(screen, colors[game.figure.color],
-                                             [game.x + game.zoom * (j + game.figure.x) + 1,
-                                              game.y + game.zoom * (i + game.figure.y) + 1,
-                                              game.zoom - 2, game.zoom - 2])
-            if game.next_figure is not None:
-                for i in range(4):
-                    for j in range(4):
+                for i in range(game.height):
+                    for j in range(game.width):
                         pygame.draw.rect(screen, GRAY,
-                                         [game.next_blockX + game.zoom * (j),
-                                          game.next_blockY + game.zoom * (i), game.zoom, game.zoom], 1)
-                        p = i * 4 + j
-                        if p in game.next_figure.image():
-                            pygame.draw.rect(screen, colors[game.next_figure.color],
-                                             [game.next_blockX + game.zoom * (j) + 1,
-                                              game.next_blockY + game.zoom * (i) + 1,
-                                              game.zoom - 2, game.zoom - 2])
-        else:
-            for i in range(game.height):
-                for j in range(game.width):
-                    pygame.draw.rect(screen, GRAY,
-                                     [game.x + game.zoom * j, game.y + game.zoom * i, game.zoom, game.zoom], 1)
-                    if game.field[i][j] > 0:
-                        pygame.draw.rect(screen, colors[game.field[i][j]],
-                                         [game.x + game.zoom * j + 1, game.y + game.zoom * i + 1, game.zoom - 2,
-                                          game.zoom - 1])
+                                        [game.x + game.zoom * j, game.y + game.zoom * i, game.zoom, game.zoom], 1)
+                        pygame.draw.rect(screen, YELLOW,
+                                        [game.x + game.zoom * j + 1, game.y + game.zoom * i + 1, game.zoom - 2,
+                                        game.zoom - 1])
 
-            if game.figure is not None:
-                for i in range(4):
-                    for j in range(4):
-                        p = i * 4 + j
-                        if p in game.figure.image():
-                            pygame.draw.rect(screen, colors[game.figure.color],
-                                             [game.x + game.zoom * (j + game.figure.x) + 1,
-                                              game.y + game.zoom * (i + game.figure.y) + 1,
-                                              game.zoom - 2, game.zoom - 2])
-
-            if game.next_figure is not None:
-                for i in range(4):
-                    for j in range(4):
+                if game.figure is not None:
+                    for i in range(4):
+                        for j in range(4):
+                            p = i * 4 + j
+                            if p in game.figure.image():
+                                pygame.draw.rect(screen, colors[game.figure.color],
+                                                [game.x + game.zoom * (j + game.figure.x) + 1,
+                                                game.y + game.zoom * (i + game.figure.y) + 1,
+                                                game.zoom - 2, game.zoom - 2])
+                if game.next_figure is not None:
+                    for i in range(4):
+                        for j in range(4):
+                            pygame.draw.rect(screen, GRAY,
+                                            [game.next_blockX + game.zoom * (j),
+                                            game.next_blockY + game.zoom * (i), game.zoom, game.zoom], 1)
+                            p = i * 4 + j
+                            if p in game.next_figure.image():
+                                pygame.draw.rect(screen, colors[game.next_figure.color],
+                                                [game.next_blockX + game.zoom * (j) + 1,
+                                                game.next_blockY + game.zoom * (i) + 1,
+                                                game.zoom - 2, game.zoom - 2])
+            else:
+                for i in range(game.height):
+                    for j in range(game.width):
                         pygame.draw.rect(screen, GRAY,
-                                         [game.next_blockX + game.zoom * (j),
-                                          game.next_blockY + game.zoom * (i), game.zoom, game.zoom], 1)
-                        p = i * 4 + j
-                        if p in game.next_figure.image():
-                            pygame.draw.rect(screen, colors[game.next_figure.color],
-                                             [game.next_blockX + game.zoom * (j) + 1,
-                                              game.next_blockY + game.zoom * (i) + 1,
-                                              game.zoom - 2, game.zoom - 2])
+                                        [game.x + game.zoom * j, game.y + game.zoom * i, game.zoom, game.zoom], 1)
+                        if game.field[i][j] > 0:
+                            pygame.draw.rect(screen, colors[game.field[i][j]],
+                                            [game.x + game.zoom * j + 1, game.y + game.zoom * i + 1, game.zoom - 2,
+                                            game.zoom - 1])
 
-        font_socre = pygame.font.SysFont('Calibri', 32, True, False)
-        font_next = pygame.font.SysFont('Calibri', 14, True, False)
-        font_game_over = pygame.font.SysFont('Calibri',72 , True, False)
-        font_press = pygame.font.SysFont('Calibri',44 , True, False)
+                if game.figure is not None:
+                    for i in range(4):
+                        for j in range(4):
+                            p = i * 4 + j
+                            if p in game.figure.image():
+                                pygame.draw.rect(screen, colors[game.figure.color],
+                                                [game.x + game.zoom * (j + game.figure.x) + 1,
+                                                game.y + game.zoom * (i + game.figure.y) + 1,
+                                                game.zoom - 2, game.zoom - 2])
 
-        text = font_socre.render("Score: " + str(game.score), True, BLACK)
-        text_game_over = font_game_over.render("Game Over", True, (255, 125, 0))
-        text_press_right = font_press.render("Press right : Play again", True, (255, 215, 0))
-        text_press_left = font_press.render("Press left   : Return to menu", True, (255, 215, 0))
-        text_next = font_next.render("NEXT BLOCK", True, (0, 0, 0))
+                if game.next_figure is not None:
+                    for i in range(4):
+                        for j in range(4):
+                            pygame.draw.rect(screen, GRAY,
+                                            [game.next_blockX + game.zoom * (j),
+                                            game.next_blockY + game.zoom * (i), game.zoom, game.zoom], 1)
+                            p = i * 4 + j
+                            if p in game.next_figure.image():
+                                pygame.draw.rect(screen, colors[game.next_figure.color],
+                                                [game.next_blockX + game.zoom * (j) + 1,
+                                                game.next_blockY + game.zoom * (i) + 1,
+                                                game.zoom - 2, game.zoom - 2])
 
-        screen.blit(text, [0, 0])
-        screen.blit(text_next, [game.next_blockX , 180])
-        if game.state == "game over":
+            font_next = pygame.font.SysFont('Calibri', 14, True, False)
+            text_next = font_next.render("NEXT BLOCK", True,WHITE)
+            screen.blit(text_next, [game.next_blockX , 180])
+
+            font_socre = pygame.font.SysFont('Calibri', 32, True, False)
+            text_socre= font_socre.render("Score: " + str(game.score), True, WHITE)
+            screen.blit(text_socre, [0, 0])
+        else:         
+            font_game_over = pygame.font.SysFont('Calibri',72 , True, False)
+            font_press = pygame.font.SysFont('Calibri',44 , True, False)
+            font_socre = pygame.font.SysFont('Calibri', 44, True, False)
+            text_game_over = font_game_over.render("Game Over", True, (255, 125, 0))
+            text_press_right = font_press.render("Press right : Play again", True, (255, 215, 0))
+            text_press_left = font_press.render("Press left   : Return to menu", True, (255, 215, 0))
+            text_socre= font_socre.render("Score: " + str(game.score), True, WHITE)
+
+            screen.blit(text_socre, [0, 0])        
             screen.blit(text_game_over, [220, 150])
             screen.blit(text_press_right, [150, 250])
             screen.blit(text_press_left, [150, 300])
