@@ -31,7 +31,8 @@ pygame.init()
 size = (800, 500)
 screen = pygame.display.set_mode(size)
 
-background = pygame.image.load("./only_keyboard/tetris-2.jpg")
+background = pygame.image.load("../only_keyboard/tetris-2.jpg")
+select_m = pygame.image.load("../only_keyboard/menu_button (2).png")
 
 menu_state = "menu"
 select = 0
@@ -55,33 +56,35 @@ check_left = 1
 check_right = 1
 check_down = 1
 
-pygame.mixer.music.load("./audio/BGM Menu.mp3")
+pygame.mixer.music.load("../audio/BGM Menu.mp3")
 pygame.mixer.music.play(-1)
 while not done:
-    screen.fill((0,0,0))
+    #screen.fill((0,0,0))
     screen.blit(background,(0,0))
 
     font = pygame.font.SysFont('Calibri', 25, True, False)
     text = font.render("Singleplayer", True, WHITE)
     text2 = font.render("Multiplayer", True, WHITE)
-    screen.blit(text, [200,100])
-    screen.blit(text2, [200,150])
-    select = select%2
-    pygame.draw.rect(screen, WHITE,
-                     [180,
-                      100+select*50,
-                      20, 20])
+    select = select % 2
+    screen.blit(select_m, [35 + 180 + 50, 14 + 100 + select * 50])
+    screen.blit(text, [200+100,100+50])
+    screen.blit(text2, [200+100,150+50])
+
+    '''pygame.draw.rect(screen, WHITE,
+                     [50+180+50,
+                      50+100+select*50,
+                      20, 20])'''
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP and check_up:
-                pygame.draw.rect(screen, BLACK, [180, 100 + select * 50, 20, 20])
+                #pygame.draw.rect(screen, BLACK, [180, 100 + select * 50, 20, 20])
                 select -= 1
                 check_up = 0
             if event.key == pygame.K_DOWN and check_down:
-                pygame.draw.rect(screen, BLACK, [180, 100 + select * 50, 20, 20])
+                #pygame.draw.rect(screen, BLACK, [180, 100 + select * 50, 20, 20])
                 select += 1
                 check_down = 0
             if event.key == pygame.K_RIGHT and check_right:
