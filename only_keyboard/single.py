@@ -190,18 +190,15 @@ def single_play(colors, screen):
 
             font_socre = pygame.font.Font('./font/04B_30__.ttf', 24)
             text_socre= font_socre.render("Score: " + str(game.score), True, WHITE)
-            screen.blit(text_socre, [0, 0])
-        else:         
-            font_game_over = font = pygame.font.Font('./font/04B_30__.ttf', 72)
+            screen.blit(text_socre, [70, 60])
+        else:
             font_press = pygame.font.Font('./font/04B_30__.ttf', 24)
-            font_socre = pygame.font.Font('./font/04B_30__.ttf', 36)
-            text_game_over = font_game_over.render("Game Over", True, (255, 125, 0))
+            font_socre = pygame.font.Font('./font/04B_30__.ttf', 72)
             text_press_right = font_press.render("Press right : Play again", True, (255, 215, 0))
-            text_press_left = font_press.render("Press left : Return to menu", True, (255, 215, 0))
-            text_socre= font_socre.render("Score: " + str(game.score), True, WHITE)
+            text_press_left = font_press.render("Press left  : Return to menu", True, (255, 215, 0))
+            text_socre= font_socre.render("Score: " + str(game.score), True, (255, 125, 0))
 
-            screen.blit(text_socre, [0, 0])        
-            screen.blit(text_game_over, [170, 150])
+            screen.blit(text_socre, [150, 150])        
             screen.blit(text_press_right, [150, 250])
             screen.blit(text_press_left, [150, 300])
 

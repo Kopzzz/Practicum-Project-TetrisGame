@@ -19,9 +19,10 @@ def multi_play(colors, screen):
     clock = pygame.time.Clock()
     fps = 25
     game = Tetris(20, 10)
+
     game1 = Tetris(20, 10)
     game1.x += 400
-    game1.next_blockX += 400
+    game1.next_blockX += 400 
     counter = 0
 
     pressing_down1 = False
@@ -40,22 +41,12 @@ def multi_play(colors, screen):
     check_left = 1
     check_right = 1
 
-    font_socre = pygame.font.Font('./only_keyboard/04B_30__.ttf', 32)
-    font_game_over = pygame.font.Font('./only_keyboard/04B_30__.ttf', 72)
-    font_press = pygame.font.Font('./only_keyboard/04B_30__.ttf', 44)
-    font_next = pygame.font.Font('./only_keyboard/04B_30__.ttf', 14)
-    
-    text_game_over = font_game_over.render("Game Over", True, (255, 125, 0))
-    text_press_right = font_press.render("Press right : Play again", True, (255, 215, 0))
-    text_press_left = font_press.render("Press left   : Return to menu", True, (255, 215, 0))
-    text_next = font_next.render("NEXT BLOCK",True, WHITE)
-    
+    font_next = pygame.font.Font('./font/04B_30__.ttf', 14)    
+    text_next = font_next.render("NEXT",True, WHITE)
 
     game.state = "start"
     game1.state = "start"
     while not done:
-        text_score = font_socre.render("Score: " + str(game.score), True, WHITE)
-        text1_score = font_socre.render("Score: " + str(game1.score), True, WHITE)
         '''
         if game1.state == "calibrate":
             if peri1.get_down():
@@ -181,6 +172,8 @@ def multi_play(colors, screen):
         '''
         screen.fill(BLACK)
         if game1.state != 'game over':
+            font_socre = pygame.font.Font('./font/04B_30__.ttf', 24)
+            text1_score = font_socre.render("Score: " + str(game1.score), True, WHITE)
             screen.blit(text1_score, [400, 0])
             screen.blit(text_next, [game1.next_blockX,180])
 
@@ -250,12 +243,13 @@ def multi_play(colors, screen):
                                                 game1.next_blockY + game1.zoom * (i) + 1,
                                                 game1.zoom - 2, game1.zoom - 2])
         elif game1.state == 'game over':
-            font_socre = pygame.font.Font('./only_keyboard/04B_30__.ttf', 44)
-            text1_socre= font_socre.render("Score: " + str(game1.score), True, WHITE)
-            screen.blit(text1_socre, [400, 0])        
-            screen.blit(text_game_over, [420, 150])
+            font_socre = pygame.font.Font('./font/04B_30__.ttf', 40)
+            text1_score = font_socre.render("Score: " + str(game1.score), True, (255, 125, 0))
+            screen.blit(text1_score, [450, 150])
 
         if game.state != 'game over':
+            font_socre = pygame.font.Font('./font/04B_30__.ttf', 24)
+            text_score = font_socre.render("Score: " + str(game.score), True, WHITE)
             screen.blit(text_score, [0, 0])
             screen.blit(text_next, [game.next_blockX,180])
 
@@ -326,12 +320,14 @@ def multi_play(colors, screen):
                                                 game.next_blockY +  game.zoom * (i) + 1,
                                                 game.zoom - 2, game.zoom - 2])
         elif game.state == 'game over':
-            font_socre = pygame.font.Font('./only_keyboard/04B_30__.ttf', 44)
-            text_socre= font_socre.render("Score: " + str(game.score), True, WHITE)
-            screen.blit(text_socre, [0, 0])        
-            screen.blit(text_game_over, [20, 150])
+            font_socre = pygame.font.Font('./font/04B_30__.ttf', 40)
+            text_socre= font_socre.render("Score: " + str(game.score), True, (255, 125, 0))
+            screen.blit(text_socre, [50, 150])        
             
         if game.state == "game over" and game1.state == "game over":
+            font_press = pygame.font.Font('./font/04B_30__.ttf', 24)
+            text_press_right = font_press.render("Press right : Play again", True, (255, 215, 0))
+            text_press_left = font_press.render("Press left  : Return to menu", True, (255, 215, 0))
             screen.blit(text_press_right, [150, 250])
             screen.blit(text_press_left, [150, 300])
 
