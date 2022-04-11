@@ -184,17 +184,17 @@ def single_play(colors, screen):
                                                 game.next_blockY + game.zoom * (i) + 1,
                                                 game.zoom - 2, game.zoom - 2])
 
-            font_next = pygame.font.SysFont('Calibri', 14, True, False)
+            font_next = pygame.font.Font('./only_keyboard/04B_30__.ttf', 14)
             text_next = font_next.render("NEXT BLOCK", True,WHITE)
             screen.blit(text_next, [game.next_blockX , 180])
 
-            font_socre = pygame.font.SysFont('Calibri', 32, True, False)
+            font_socre = pygame.font.Font('./only_keyboard/04B_30__.ttf', 32)
             text_socre= font_socre.render("Score: " + str(game.score), True, WHITE)
             screen.blit(text_socre, [0, 0])
         else:         
-            font_game_over = pygame.font.SysFont('Calibri',72 , True, False)
-            font_press = pygame.font.SysFont('Calibri',44 , True, False)
-            font_socre = pygame.font.SysFont('Calibri', 44, True, False)
+            font_game_over = font = pygame.font.Font('./only_keyboard/04B_30__.ttf', 72)
+            font_press = pygame.font.Font('./only_keyboard/04B_30__.ttf', 14)
+            font_socre = pygame.font.Font('./only_keyboard/04B_30__.ttf', 14)
             text_game_over = font_game_over.render("Game Over", True, (255, 125, 0))
             text_press_right = font_press.render("Press right : Play again", True, (255, 215, 0))
             text_press_left = font_press.render("Press left   : Return to menu", True, (255, 215, 0))
