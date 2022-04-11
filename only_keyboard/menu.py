@@ -16,7 +16,6 @@ colors = [
     (230, 25, 0), #red
     (250, 100, 255), #pink
 ]
-
 '''
 devs = find_mcu_boards()
 mcu_1 = McuBoard(devs[0])
@@ -25,7 +24,6 @@ if len(devs) == 2 :
     mcu_2 = McuBoard(devs[1])
     peri1 = PeriBoard(mcu_2)
 '''
-
 # Initialize the game engine
 pygame.init()
 
@@ -72,11 +70,6 @@ while not done:
     screen.blit(text, [200+100,100+20])
     screen.blit(text2, [200+100,150+20])
     screen.blit(text3, [200+100,200+20])
-
-    '''pygame.draw.rect(screen, WHITE,
-                     [50+180+50,
-                      50+100+select*50,
-                      20, 20])'''
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:

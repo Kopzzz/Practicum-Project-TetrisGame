@@ -48,11 +48,6 @@ def tutorial_single(colors, screen):
         screen.blit(text3, [250 + 100, 180 + 50])
         screen.blit(text4, [250 + 100, 200 + 50])
 
-        '''pygame.draw.rect(screen, WHITE,
-                         [50+180+50,
-                          50+100+select*50,
-                          20, 20])'''
-
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 done = True
@@ -63,7 +58,6 @@ def tutorial_single(colors, screen):
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT:
                     check_left = 1
-            '''
             if not peri.get_up():
                 return
             if not peri.get_left():
@@ -73,13 +67,12 @@ def tutorial_single(colors, screen):
             if not peri.get_down():
                 check_down = 1
 
-
-        if peri.get_up() and check_up:
+        if peri.get_left() and check_left:
             return
 
-        if not peri.get_up():
-            check_up = 1
-        '''
+        if not peri.get_left():
+            check_left = 1
+        
         pygame.display.flip()
         clock.tick(fps)
 

@@ -31,14 +31,12 @@ def single_play(colors, screen):
     check_left = 1
     check_right = 1
 
-    game.state = "start"
+    #game.state = "start"
     while not done:
-        '''
         if game.state == "calibrate":
             if peri.get_down():
                 light_min = peri.get_light()
                 game.state = "start"
-        '''
         
         if game.figure is None:
             game.figure = Figure(3, 0)
@@ -77,7 +75,6 @@ def single_play(colors, screen):
                 if event.key == pygame.K_DOWN:
                     pressing_down = False
             
-        '''
         if game.state == "start" or game.state == "obstacle":
             if peri.get_light() >= 0.5 * light_min:
                 if peri.get_up() and check_up:
@@ -109,7 +106,6 @@ def single_play(colors, screen):
 
             if peri.get_left() :
                 return
-        '''
 
         screen.fill(BLACK)
         if game.state != "game over":

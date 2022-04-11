@@ -44,15 +44,15 @@ def multi_play(colors, screen):
     font_next = pygame.font.Font('./font/04B_30__.ttf', 14)    
     text_next = font_next.render("NEXT",True, WHITE)
 
-    game.state = "start"
-    game1.state = "start"
+    #game.state = "start"
+    #game1.state = "start"
     while not done:
-        '''
+        
         if game1.state == "calibrate":
             if peri1.get_down():
                 light_min1 = peri1.get_light()
                 game1.state = "start"
-        '''
+        
         if game1.figure is None:
             game1.figure = Figure(3, 0)
             game1.next_figure = Figure(3, 0)
@@ -114,7 +114,7 @@ def multi_play(colors, screen):
                     pressing_down = False
                 if event.key == pygame.K_DOWN:
                     pressing_down1 = False
-        '''
+        
         if game1.state == "start" or game1.state == "obstacle":
             if peri1.get_light() >= 0.5*light_min1:
                 if peri1.get_up() and check_up1:
@@ -169,7 +169,7 @@ def multi_play(colors, screen):
 
             if peri.get_left() or peri1.get_left():
                 return
-        '''
+        
         screen.fill(BLACK)
         if game1.state != 'game over':
             font_socre = pygame.font.Font('./font/04B_30__.ttf', 24)
