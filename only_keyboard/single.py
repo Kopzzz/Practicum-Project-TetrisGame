@@ -6,7 +6,7 @@ import random
 from Tetris import Tetris,Figure
 
 def single_play(colors, screen):
-    pygame.mixer.music.load("./audio/BGM InGame.mp3")
+    pygame.mixer.music.load("./PracticumProject-TetrisGame/audio/BGM InGame.mp3")
     pygame.mixer.music.play(-1)
     # Define some colors
     BLACK = (0, 0, 0)

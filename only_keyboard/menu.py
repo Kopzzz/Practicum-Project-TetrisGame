@@ -31,6 +31,8 @@ pygame.init()
 size = (800, 500)
 screen = pygame.display.set_mode(size)
 
+background = pygame.image.load("./PracticumProject-TetrisGame/only_keyboard/tetris-2.jpg")
+
 menu_state = "menu"
 select = 0
 pygame.display.set_caption("Tetris")
@@ -53,16 +55,16 @@ check_left = 1
 check_right = 1
 check_down = 1
 
-pygame.mixer.music.load("./audio/BGM Menu.mp3")
+pygame.mixer.music.load("./PracticumProject-TetrisGame/audio/BGM Menu.mp3")
 pygame.mixer.music.play(-1)
 while not done:
-    screen.fill(BLACK)
-    
+    screen.fill((0,0,0))
+    screen.blit(background,(0,0))
 
     font = pygame.font.SysFont('Calibri', 25, True, False)
     text = font.render("Singleplayer", True, WHITE)
     text2 = font.render("Multiplayer", True, WHITE)
-    screen.blit(text, [200,100 ])
+    screen.blit(text, [200,100])
     screen.blit(text2, [200,150])
     select = select%2
     pygame.draw.rect(screen, WHITE,
