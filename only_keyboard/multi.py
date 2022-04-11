@@ -96,7 +96,7 @@ def multi_play(colors, screen):
                         game.__init__(20, 10)
                         game1.__init__(20, 10)
                     if event.key == pygame.K_LEFT:
-                        pygame.mixer.music.load("./audio/BGM Menu.mp3")
+                        pygame.mixer.music.load("./PracticumProject-TetrisGame/audio/BGM Menu.mp3")
                         pygame.mixer.music.play(-1)
                         return
                 if game1.state != "game over":

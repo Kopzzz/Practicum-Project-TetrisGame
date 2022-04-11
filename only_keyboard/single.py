@@ -70,7 +70,7 @@ def single_play(colors, screen):
                     if event.key == pygame.K_RIGHT:
                         game.__init__(20, 10)
                     if event.key == pygame.K_LEFT:
-                        pygame.mixer.music.load("./audio/BGM Menu.mp3")
+                        pygame.mixer.music.load("./PracticumProject-TetrisGame/audio/BGM Menu.mp3")
                         pygame.mixer.music.play(-1)
                         return
             if event.type == pygame.KEYUP:
