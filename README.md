@@ -54,14 +54,14 @@
 |   multi.py              : โปรแกรม GUI สำหรับการแสดงผล การเล่นเกมแบบ 2 คน
 |   single.py             : โปรแกรม GUI สำหรับการแสดงผล การเล่นเกมแบบ 1 คน
 |   How_to_play.py        : โปรแกรม GUI สำหรับการแสดงผล วิธีการเล่นเกมส์
-|   practicum.py        
+|   practicum.py          : ส่ง request ให้ mcu ผ่าน pyusb
 ```
 
 ### firmware
 ```
 โฟลเดอร์สำหรับเก็บข้อมูลเฟิร์มแวร์
 |   Makefile              : makefile
-|   main.c                : ส่ง request ไปยัง Mcu
+|   main.c                : รับ request จาก Host
 |   peri.c                : ไว้initial port และ analog read
 |   peri.h                : เป็น header ของ peri.c
 ```
